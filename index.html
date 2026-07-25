@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lure — Kathmandu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Petit+Formal+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FDF6F2;
+    --cream-2:#FBEAE7;
+    --blush:#FADCE3;
+    --pink-glow:#FCE7EC;
+    --rose:#F0A9BA;
+    --rose-deep:#D9738D;
+    --plum:#33121F;
+    --plum-2:#4A1B2E;
+    --gold:#C6994F;
+    --gold-light:#E7CE97;
+    --line: rgba(51,18,31,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .script{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .script{ font-family:'Petit Formal Script', cursive; font-weight:400; }
+  a{ color:inherit; text-decoration:none; }
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:0.68rem;
+    color:var(--rose-deep);
+    font-weight:500;
+  }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  @media(max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,236,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:78px;
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.9rem;
+    font-weight:600;
+    letter-spacing:0.12em;
+    position:relative;
+  }
+  .logo .hook{
+    display:inline-block;
+    font-family:'Petit Formal Script', cursive;
+    font-size:1.1rem;
+    color:var(--gold);
+    margin-left:2px;
+    transform:translateY(-2px) rotate(6deg);
+  }
+  .navlinks{ display:flex; gap:34px; font-size:0.82rem; letter-spacing:0.05em; }
+  .navlinks a{ position:relative; padding-bottom:4px; }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold); transition:width .35s ease;
+  }
+  .navlinks a:hover::after{ width:100%; }
+  .navicons{ display:flex; gap:20px; align-items:center; font-size:0.8rem; }
+  .navicons button{ background:none;border:none;font-family:inherit;color:inherit;cursor:pointer;font-size:0.8rem; }
+  .cta-pill{
+    border:1px solid var(--plum);
+    padding:9px 22px;
+    border-radius:999px;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    transition: all .3s ease;
+    white-space:nowrap;
+  }
+  .cta-pill:hover{ background:var(--plum); color:var(--cream); }
+  @media(max-width:860px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:120px 24px 80px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 18%, var(--pink-glow) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 70% at 50% 100%, var(--blush) 0%, transparent 65%),
+      var(--cream);
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle, var(--rose) 1px, transparent 1.4px);
+    background-size: 34px 34px;
+    opacity:0.10;
+    pointer-events:none;
+  }
+  .hero-eyebrow{ margin-bottom:22px; }
+  .hero h1{
+    font-size:clamp(3.6rem, 11vw, 8.2rem);
+    line-height:0.92;
+    letter-spacing:0.02em;
+    color:var(--plum);
+    position:relative;
+    display:inline-block;
+  }
+  .hero h1 .shine{
+    background: linear-gradient(115deg, var(--plum) 25%, var(--rose-deep) 45%, var(--plum) 65%);
+    background-size:300% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer{
+    0%,100%{ background-position:200% 0; }
+    50%{ background-position:0% 0; }
+  }
+  .hero p.tag{
+    margin-top:26px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.35rem;
+    color:var(--rose-deep);
+    max-width:480px;
+  }
+  .hero .sub{
+    margin-top:14px;
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    color:var(--plum-2);
+    opacity:0.75;
+    max-width:420px;
+    line-height:1.7;
+  }
+  .hero-cta{
+    margin-top:40px;
+    display:flex; gap:16px; flex-wrap:wrap; justify-content:center;
+  }
+  .btn-primary{
+    background:var(--plum); color:var(--cream);
+    padding:15px 36px; border-radius:999px;
+    font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase;
+    transition:transform .3s ease, box-shadow .3s ease;
+    box-shadow:0 0 0 0 rgba(198,153,79,0.5);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(51,18,31,0.4); }
+  .btn-ghost{
+    border:1px solid var(--plum); color:var(--plum);
+    padding:15px 36px; border-radius:999px;
+    font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase;
+    transition:all .3s ease;
+  }
+  .btn-ghost:hover{ background:var(--plum); color:var(--cream); }
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--rose-deep); display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:var(--rose-deep); animation:drop 2.2s ease-in-out infinite; transform-origin:top; }
+  @keyframes drop{ 0%{transform:scaleY(0);opacity:0;} 40%{transform:scaleY(1);opacity:1;} 100%{transform:scaleY(1);opacity:0;} }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding:100px 0; }
+  .section-head{ text-align:center; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(2.1rem,4.4vw,3.1rem); margin-top:10px; }
+  .section-head p{ margin-top:12px; font-size:0.88rem; color:var(--plum-2); opacity:0.7; max-width:440px; margin-left:auto; margin-right:auto; }
+  .view-all{ display:block; text-align:center; margin-top:48px; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; }
+  .view-all span{ border-bottom:1px solid var(--plum); padding-bottom:3px; }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+  @media(max-width:980px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  .card{ position:relative; }
+  .card-link{ display:block; color:inherit; text-decoration:none; }
+  .card-img{
+    position:relative;
+    aspect-ratio:3/4;
+    border-radius:2px;
+    overflow:hidden;
+    background:linear-gradient(150deg,var(--blush),var(--cream-2));
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .card-img::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(115deg, transparent 40%, rgba(231,206,151,0.55) 50%, transparent 60%);
+    background-size:250% 250%;
+    background-position:150% 150%;
+    transition:background-position .8s ease;
+  }
+  .card:hover .card-img::after{ background-position:-50% -50%; }
+  .card-img .ph{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:0.85rem;
+    color:var(--rose-deep);
+    opacity:0.6;
+    text-align:center;
+    padding:20px;
+  }
+  .card-img img{
+    width:100%; height:100%; object-fit:cover; object-position:top center;
+    display:block; transition:transform .6s ease;
+  }
+  .card:hover .card-img img{ transform:scale(1.045); }
+  .badge{
+    position:absolute; top:14px; left:14px;
+    background:var(--cream); color:var(--rose-deep);
+    font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase;
+    padding:5px 10px; border-radius:999px;
+    z-index:2;
+  }
+  .badge.gold{ background:var(--gold); color:var(--cream); }
+  .wish{
+    position:absolute; top:12px; right:12px; z-index:2;
+    width:30px; height:30px; border-radius:50%;
+    background:rgba(251,243,236,0.85);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem; color:var(--rose-deep);
+    transition:transform .25s ease;
+  }
+  .wish:hover{ transform:scale(1.15); }
+  .card-info{ margin-top:14px; }
+  .card-info .name{ font-size:0.88rem; font-weight:400; letter-spacing:0.01em; }
+  .card-info .price{ margin-top:5px; font-size:0.85rem; color:var(--rose-deep); }
+  .card-info .price .npr{ font-size:0.68rem; letter-spacing:0.05em; opacity:0.7; margin-right:2px; }
+
+  /* ---------- MOOD SECTION ---------- */
+  .mood-wrap{ background:linear-gradient(180deg, var(--cream-2), var(--blush)); color:var(--plum); }
+  .mood-wrap .eyebrow{ color:var(--rose-deep); }
+  .mood-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+  @media(max-width:860px){ .mood-grid{grid-template-columns:1fr;} }
+  .mood-card{
+    position:relative; aspect-ratio:3/4; border-radius:2px; overflow:hidden;
+    display:flex; align-items:flex-end; padding:28px;
+    cursor:pointer;
+  }
+  .mood-card .bg{ position:absolute; inset:0; opacity:0.95; transition:transform .6s ease; }
+  .mood-card:hover .bg{ transform:scale(1.06); }
+  .mood-card:nth-child(1) .bg{ background:linear-gradient(160deg,#FBD3DC,#F0A9BA); }
+  .mood-card:nth-child(2) .bg{ background:linear-gradient(160deg,#FCE1D6,#F3C09B); }
+  .mood-card:nth-child(3) .bg{ background:linear-gradient(160deg,#F6E7C9,#E7CE97); }
+  .mood-card::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(51,18,31,0.72), transparent 58%); }
+  .mood-card .content{ position:relative; z-index:2; color:var(--cream); }
+  .mood-card .content .script{ font-size:1.6rem; color:var(--gold-light); }
+  .mood-card .content .name{ font-family:'Cormorant Garamond',serif; font-size:1.6rem; margin-top:2px; }
+  .mood-card .content .cta{ margin-top:10px; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; opacity:0.8; }
+
+  /* ---------- LOOK STORY ---------- */
+  .look{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px; align-items:center; }
+  .look.reverse{ grid-template-columns:0.9fr 1.1fr; }
+  .look.reverse .look-img{ order:2; }
+  @media(max-width:900px){ .look, .look.reverse{ grid-template-columns:1fr; } .look.reverse .look-img{order:0;} }
+  .look-img{
+    aspect-ratio:4/5; border-radius:2px;
+    background:linear-gradient(150deg,var(--blush),var(--cream-2));
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .look-img .ph{ font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--rose-deep); opacity:0.55; }
+  .look-body .num{ font-size:0.7rem; letter-spacing:0.2em; color:var(--gold); text-transform:uppercase; }
+  .look-body h3{ font-size:2.4rem; margin-top:12px; }
+  .look-body p{ margin-top:16px; font-size:0.9rem; line-height:1.85; color:var(--plum-2); opacity:0.8; max-width:400px; }
+  .look-items{ margin-top:26px; display:flex; flex-direction:column; gap:12px; }
+  .look-item{ display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:10px; font-size:0.82rem; }
+  .look-item .n{ opacity:0.8; }
+  .look-item .p{ color:var(--rose-deep); }
+  .look-body .btn-ghost{ margin-top:28px; display:inline-block; }
+
+  /* ---------- STRIP ---------- */
+  .strip{
+    background:var(--blush); text-align:center; padding:60px 24px;
+  }
+  .strip .script{ font-size:2.4rem; color:var(--rose-deep); }
+  .strip p{ margin-top:10px; font-size:0.85rem; max-width:520px; margin-left:auto; margin-right:auto; opacity:0.75; line-height:1.8; }
+
+  /* ---------- NEWSLETTER ---------- */
+  .news{ background:var(--cream-2); padding:90px 0; text-align:center; }
+  .news h2{ font-size:2.2rem; }
+  .news p{ margin-top:10px; font-size:0.85rem; opacity:0.7; }
+  .news-form{ margin-top:32px; display:flex; justify-content:center; gap:0; max-width:420px; margin-left:auto; margin-right:auto; }
+  .news-form input{
+    flex:1; border:1px solid var(--plum); border-right:none;
+    background:transparent; padding:14px 18px; font-family:'Jost'; font-size:0.85rem;
+    border-radius:999px 0 0 999px; outline:none; color:var(--plum);
+  }
+  .news-form button{
+    border:1px solid var(--plum); background:var(--plum); color:var(--cream);
+    padding:14px 26px; border-radius:0 999px 999px 0; font-size:0.72rem;
+    letter-spacing:0.14em; text-transform:uppercase; cursor:pointer;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--blush); color:var(--plum); padding:80px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:40px; }
+  @media(max-width:800px){ .foot-grid{ grid-template-columns:1fr 1fr; } }
+  .foot-logo{ font-family:'Cormorant Garamond',serif; font-size:1.8rem; letter-spacing:0.08em; }
+  .foot-grid p{ margin-top:16px; font-size:0.82rem; opacity:0.7; line-height:1.8; max-width:260px; }
+  .foot-col h4{ font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--rose-deep); margin-bottom:18px; font-weight:500; }
+  .foot-col a, .foot-col div{ display:block; font-size:0.82rem; opacity:0.78; margin-bottom:11px; }
+  .foot-col a:hover{ opacity:1; color:var(--rose-deep); }
+  .pay-row{ display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
+  .pay-row span{
+    border:1px solid rgba(51,18,31,0.25); border-radius:5px;
+    padding:5px 10px; font-size:0.65rem; letter-spacing:0.04em; opacity:0.85;
+  }
+  .foot-bottom{
+    margin-top:70px; padding-top:26px; border-top:1px solid rgba(51,18,31,0.15);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.72rem; opacity:0.6;
+  }
+
+  ::selection{ background:var(--gold-light); color:var(--plum); }
+</style>
+<link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">LURE<span class="hook">.</span></div>
+    <div class="navlinks">
+      <a href="#new">New In</a>
+      <a href="#mood">Shop by Mood</a>
+      <a href="#best">Best Sellers</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="navicons">
+      <a href="#" class="cta-pill">Shop Now</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow eyebrow">Kathmandu, Nepal</div>
+  <h1>L<span class="shine">U</span>RE</h1>
+  <p class="tag">for the girls who already know their pull.</p>
+  <p class="sub">Coquette-coded fashion designed in Kathmandu — soft silhouettes, gold detailing, and pieces made to be noticed. Small batches, shipped across Nepal.</p>
+  <div class="hero-cta">
+    <a href="#new" class="btn-primary">Shop New In</a>
+    <a href="#mood" class="btn-ghost">Shop by Mood</a>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<section class="section" id="new">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Fresh Catch</div>
+      <h2>New In</h2>
+      <p>The newest pieces, dropped first for the ones who check daily.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <span class="wish">♡</span>
+        <a href="products/teal-pullover.html" class="card-link">
+          <div class="card-img"><span class="badge">New</span><img src="images/teal-pullover.png" alt="Teal Balloon-Sleeve Pullover"></div>
+          <div class="card-info"><div class="name">Teal Dream Balloon-Sleeve Pullover</div><div class="price"><span class="npr">Rs.</span>2,900</div></div>
+        </a>
+      </div>
+      <div class="card">
+        <span class="wish">♡</span>
+        <a href="products/noir-button-top.html" class="card-link">
+          <div class="card-img"><span class="badge">New</span><img src="images/noir-button-top.png" alt="Noir Button-Front Fitted Top"></div>
+          <div class="card-info"><div class="name">Noir Button-Front Fitted Top</div><div class="price"><span class="npr">Rs.</span>3,100</div></div>
+        </a>
+      </div>
+      <div class="card">
+        <span class="wish">♡</span>
+        <a href="products/noir-button-shorts.html" class="card-link">
+          <div class="card-img"><span class="badge">New</span><img src="images/noir-button-shorts.png" alt="Noir Button-Detail Shorts"></div>
+          <div class="card-info"><div class="name">Noir Button-Detail Shorts</div><div class="price"><span class="npr">Rs.</span>2,400</div></div>
+        </a>
+      </div>
+      <div class="card">
+        <span class="wish">♡</span>
+        <a href="products/striped-set.html" class="card-link">
+          <div class="card-img"><span class="badge">New</span><img src="images/striped-set.png" alt="Striped Off-Shoulder Two-Piece Set"></div>
+          <div class="card-info"><div class="name">Striped Off-Shoulder Two-Piece Set</div><div class="price"><span class="npr">Rs.</span>3,600</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section mood-wrap" id="mood">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Shop by Mood</div>
+      <h2>Every Version of You</h2>
+      <p style="opacity:0.6">Curated edits for however you're feeling today.</p>
+    </div>
+    <div class="mood-grid">
+      <div class="mood-card"><div class="bg"></div><div class="content"><div class="script">sweet spun</div><div class="name">the bow edit</div><div class="cta">Shop the Edit →</div></div></div>
+      <div class="mood-card"><div class="bg"></div><div class="content"><div class="script">golden hour</div><div class="name">going out</div><div class="cta">Shop the Edit →</div></div></div>
+      <div class="mood-card"><div class="bg"></div><div class="content"><div class="script">soft catch</div><div class="name">cosy knits</div><div class="cta">Shop the Edit →</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="best">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Most Wanted</div>
+      <h2>Best Sellers</h2>
+      <p>The pieces that sell out first — restocked for you.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-img"><span class="badge gold">Bestseller</span><span class="wish">♡</span><span class="ph">Lure Line<br>Corset Top</span></div>
+        <div class="card-info"><div class="name">Lure Line Boned Corset Top</div><div class="price"><span class="npr">Rs.</span>3,400</div></div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="badge gold">Bestseller</span><span class="wish">♡</span><span class="ph">Strawberry<br>Bow Cardigan</span></div>
+        <div class="card-info"><div class="name">Strawberry Bow Knit Cardigan</div><div class="price"><span class="npr">Rs.</span>3,100</div></div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="wish">♡</span><span class="ph">Dollhouse<br>Plaid Set</span></div>
+        <div class="card-info"><div class="name">Dollhouse Plaid Two-Piece Set</div><div class="price"><span class="npr">Rs.</span>4,900</div></div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="wish">♡</span><span class="ph">Velvet Ribbon<br>Mini Dress</span></div>
+        <div class="card-info"><div class="name">Velvet Ribbon Mini Dress</div><div class="price"><span class="npr">Rs.</span>4,200</div></div>
+      </div>
+    </div>
+    <a href="#" class="view-all"><span>View All Best Sellers</span></a>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="script">heaven-sent, homegrown</div>
+  <p>Every piece is designed and finished in Kathmandu, in small batches, so nothing about Lure feels mass-made. Once it's gone, it's gone.</p>
+</div>
+
+<section class="news" id="contact">
+  <div class="wrap">
+    <h2>Get first pull on new drops</h2>
+    <p>Restocks, new arrivals, and Lure-only discounts — straight to your inbox.</p>
+    <div class="news-form">
+      <input type="email" placeholder="Your email">
+      <button>Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">LURE</div>
+        <p>Coquette-coded fashion, designed and shipped from Kathmandu. Follow along for restocks and new drops.</p>
+        <div class="pay-row">
+          <span>eSewa</span><span>Khalti</span><span>COD</span><span>Bank Transfer</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <a href="#new">New In</a>
+        <a href="#best">Best Sellers</a>
+        <a href="#mood">Shop by Mood</a>
+      </div>
+      <div class="foot-col">
+        <h4>Help</h4>
+        <a href="#">Sizing Guide</a>
+        <a href="#">Shipping & Delivery</a>
+        <a href="#">Returns Policy</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+      <div class="foot-col">
+        <h4>Find Us</h4>
+        <div>Kathmandu, Nepal</div>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp Order</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Lure. All rights reserved.</span>
+      <span>Prices in NPR · Shipping across Nepal</span>
+    </div>
+  </div>
+</footer>
+
+<script src="cart.js"></script>
+</body>
+</html>
