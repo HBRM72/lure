@@ -1,7 +1,6 @@
 /* ===== Lure — Shared Cart Logic ===== */
 (function(){
   var CART_KEY = 'lure_cart_v1';
-  var inProducts = window.location.pathname.indexOf('/products/') !== -1;
 
   function getCart(){
     try{ return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
@@ -73,6 +72,7 @@
     var overlay = document.createElement('div');
     overlay.className = 'cart-drawer-overlay';
     overlay.id = 'cartOverlay';
+    overlay.style.display = 'none';
     overlay.innerHTML =
       '<div class="cart-drawer">' +
         '<div class="cart-drawer-head"><h3>Your Bag</h3><button type="button" class="cart-close" id="cartClose">&times;</button></div>' +
@@ -91,6 +91,7 @@
     var modal = document.createElement('div');
     modal.className = 'modal-overlay';
     modal.id = 'checkoutModal';
+    modal.style.display = 'none';
     modal.innerHTML =
       '<div class="modal-box cart-modal-box">' +
         '<button type="button" class="modal-close" id="modalClose">&times;</button>' +
@@ -194,8 +195,14 @@
   }
 
   /* ---------- Open / close ---------- */
-  function openDrawer(){ var o = document.getElementById('cartOverlay'); if(o) o.classList.add('open'); }
-  function closeDrawer(){ var o = document.getElementById('cartOverlay'); if(o) o.classList.remove('open'); }
+  function openDrawer(){
+    var o = document.getElementById('cartOverlay');
+    if(o){ o.style.display = 'flex'; o.classList.add('open'); }
+  }
+  function closeDrawer(){
+    var o = document.getElementById('cartOverlay');
+    if(o){ o.classList.remove('open'); o.style.display = 'none'; }
+  }
 
   function openCheckout(){
     if(cartCount() === 0) return;
@@ -206,9 +213,12 @@
     if(stepForm) stepForm.style.display = '';
     if(stepDone) stepDone.style.display = 'none';
     var modal = document.getElementById('checkoutModal');
-    if(modal) modal.classList.add('open');
+    if(modal){ modal.style.display = 'flex'; modal.classList.add('open'); }
   }
-  function closeCheckout(){ var m = document.getElementById('checkoutModal'); if(m) m.classList.remove('open'); }
+  function closeCheckout(){
+    var m = document.getElementById('checkoutModal');
+    if(m){ m.classList.remove('open'); m.style.display = 'none'; }
+  }
 
   /* ---------- Wiring ---------- */
   function wireGlobalEvents(){
